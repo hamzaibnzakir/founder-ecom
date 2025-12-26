@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Founder Ecom — Build, Scale & Automate</title>
+
+  <!-- Tailwind + Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --bg:#0F111A; 
+      --panel:#1C1F2A; 
+      --text:#E9ECEF; 
+      --muted:#A3A8B0; 
+      --accent:#00FFD5; 
+      --highlight:#FF8C42;
+    }
+
+    /* animated global gradient background */
+    html{
+      scroll-behavior:smooth;
+      background: linear-gradient(135deg,#0F111A,#1C1F2A,#121521);
+      background-size:300% 300%;
+      animation: gradientShift 18s ease infinite;
+    }
+    @keyframes gradientShift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* helper animations used in hero */
+    @keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+    .animate-slow-zoom{animation:slowZoom 16s ease-in-out infinite alternate}
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+    .animate-float{animation:floaty 6s ease-in-out infinite}
+
+    /* hide scrollbar utility */
+    .hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+    .hide-scrollbar::-webkit-scrollbar{display:none}
+
+    /* brand glow utility */
+    @keyframes brandGlow{
+      0%{box-shadow:0 0 15px rgba(0,255,213,.30)}
+      50%{box-shadow:0 0 50px rgba(255,140,66,.80)}
+      100%{box-shadow:0 0 15px rgba(0,255,213,.30)}
+    }
+    .glow-effect{animation:brandGlow 2.5s infinite ease-in-out; border-radius:14px}
+
+    /* premium card */
+    .premium-card{
+      background:linear-gradient(145deg,rgba(28,31,42,.95),rgba(28,31,42,.95));
+      border-radius:1.3rem; padding:2.5rem; color:var(--text);
+      box-shadow:0 0 35px rgba(0,255,213,.40),0 12px 65px rgba(0,0,0,.25), inset 0 0 12px rgba(255,255,255,.05);
+      transition:transform .3s ease, box-shadow .3s ease; position:relative; overflow:hidden
+    }
+    .premium-card::before{
+      content:""; position:absolute; top:-60%; left:-50%; width:200%; height:200%;
+      background:radial-gradient(circle at center, rgba(0,255,213,.06), transparent 70%);
+      transform:rotate(25deg); pointer-events:none
+    }
+    .premium-card:hover{transform:translateY(-6px) scale(1.02);
+      box-shadow:0 0 50px rgba(0,255,213,.55),0 22px 75px rgba(0,0,0,.30), inset 0 0 18px rgba(255,255,255,.08)
+    }
+
+    /* better readability on glass header */
+    .nav-link{color:var(--text)}
+    .nav-link:hover{color:var(--highlight)}
+  </style>
+</head>
+
+<body class="text-[var(--text)]">
+  <!-- Header -->
+  <header class="fixed inset-x-0 top-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/10 shadow-lg">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <div class="text-2xl md:text-3xl font-extrabold tracking-tight text-[var(--accent)]">
+        FOUNDER ECOM
+      </div>
+
+      <nav>
+        <ul class="hidden md:flex items-center space-x-6 text-base">
+          <li><a class="nav-link" href="#hero">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#programs">Programs</a></li>
+          <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
+          <li><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li><a class="nav-link" href="#faq">FAQ</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+
+        <!-- mobile button -->
+        <button id="menu-toggle" class="md:hidden text-[var(--accent)] p-2" aria-label="Open menu">
+          <i class="fas fa-bars fa-lg"></i>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/10 backdrop-blur-md border-t border-white/10">
+      <ul class="flex flex-col space-y-4 p-4 text-base">
+        <li><a class="nav-link" href="#hero">Home</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#programs">Programs</a></li>
+        <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
+        <li><a class="nav-link" href="#pricing">Pricing</a></li>
+        <li><a class="nav-link" href="#faq">FAQ</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="relative min-h-screen overflow-hidden pt-28">
+    <!-- Background -->
+    <div class="absolute inset-0">
+      <img
+        src="https://www.geckoboard.com/uploads/Ecommerce-KPI-dashboard.png"
+        alt="Hero background"
+        class="w-full h-full object-cover animate-slow-zoom brightness-60 blur-sm" />
+      <div class="absolute inset-0 bg-[var(--bg)]/70"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-7rem)] flex items-center justify-center">
+      <div class="text-center max-w-3xl animate-float">
+        <!-- Kicker -->
+        <div class="inline-block px-5 py-2 mb-6 rounded-full border border-[var(--accent)]/50 text-[var(--accent)]"
+             style="background:var(--panel);">
+          Founder-Led Ecommerce Mentorship
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
+          <span class="block text-[var(--accent)]">
+            Build, Scale & Automate
+          </span>
+          <span class="block text-[var(--text)] mt-2 font-semibold text-4xl sm:text-5xl md:text-6xl">
+            With FOUNDER ECOM
+          </span>
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-[var(--muted)] text-lg sm:text-xl md:text-2xl mb-10 leading-relaxed">
+          Stop guessing, start executing. Our team-backed system gives you product signals, ad strategy, and funnel mastery to scale reliably.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-5 justify-center items-center">
+          <a href="https://form.jotform.com/mubarakfounder/founders-ecom-mentorship"
+             class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 text-lg font-extrabold rounded-full text-[var(--bg)] bg-[var(--accent)] shadow-lg hover:scale-105 transition-all duration-300">
+            Apply Now
+          </a>
+
+          <a href="#about"
+             class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 text-lg font-bold rounded-full border border-[var(--accent)]/60 text-[var(--text)] hover:border-[var(--highlight)]/70 shadow-md hover:scale-105 transition-all duration-300">
+            See How It Works
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- HOW IT WORKS – FRICTIONLESS FLOW GLOW EDITION -->
+<section id="how-it-works" class="relative py-28 overflow-hidden bg-[var(--bg)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Headline -->
+    <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--accent)] mb-4 text-center">
+      How It Works
+    </h2>
+    <p class="text-[var(--muted)] text-lg md:text-xl mb-16 max-w-3xl mx-auto text-center">
+      Clear, step-by-step guidance to remove uncertainty and mental friction. Know exactly what to do next.
+    </p>
+
+    <!-- Steps Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+      <!-- Step 1 -->
+      <div class="relative flex flex-col items-center p-8 rounded-3xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow transform transition-transform duration-500 hover:scale-105 animate-float">
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--highlight)] to-[var(--accent)] text-[var(--bg)] font-bold text-lg mb-5 shadow-lg">
+          1
+        </div>
+        <h3 class="text-xl font-bold text-[var(--accent)] mb-3 text-center">Discover Winning Products</h3>
+        <p class="text-[var(--muted)] text-center text-sm md:text-base">
+          Analyze trends, demand, and competition to select products with high scaling potential.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative flex flex-col items-center p-8 rounded-3xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow transform transition-transform duration-500 hover:scale-105 animate-float">
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--highlight)] to-[var(--accent)] text-[var(--bg)] font-bold text-lg mb-5 shadow-lg">
+          2
+        </div>
+        <h3 class="text-xl font-bold text-[var(--accent)] mb-3 text-center">Build Optimized Funnels</h3>
+        <p class="text-[var(--muted)] text-center text-sm md:text-base">
+          High-converting funnels designed to capture leads, generate sales, and reduce drop-offs.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative flex flex-col items-center p-8 rounded-3xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow transform transition-transform duration-500 hover:scale-105 animate-float">
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--highlight)] to-[var(--accent)] text-[var(--bg)] font-bold text-lg mb-5 shadow-lg">
+          3
+        </div>
+        <h3 class="text-xl font-bold text-[var(--accent)] mb-3 text-center">Run Data-Driven Ads</h3>
+        <p class="text-[var(--muted)] text-center text-sm md:text-base">
+          Deploy tested ad strategies with clear signals to scale efficiently without wasting budget.
+        </p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="relative flex flex-col items-center p-8 rounded-3xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow transform transition-transform duration-500 hover:scale-105 animate-float">
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--highlight)] to-[var(--accent)] text-[var(--bg)] font-bold text-lg mb-5 shadow-lg">
+          4
+        </div>
+        <h3 class="text-xl font-bold text-[var(--accent)] mb-3 text-center">Scale & Automate</h3>
+        <p class="text-[var(--muted)] text-center text-sm md:text-base">
+          Implement automations and systems to maintain growth, freeing you to focus on expansion.
+        </p>
+      </div>
+    </div>
+  </div>
+<style>
+  .shadow-glow {
+    box-shadow: 0 0 25px rgba(127, 219, 255, 0.35), 0 10px 50px rgba(127, 219, 255, 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+  .shadow-glow:hover {
+    box-shadow: 0 0 45px rgba(127, 219, 255, 0.55), 0 20px 70px rgba(127, 219, 255, 0.25);
+  }
+</style>
+</section>
+
+<!-- ===================== The Gap – Emotional Positioning ===================== -->
+<section id="the-gap" class="relative py-24 bg-[var(--bg)] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--accent)]">The Gap</h2>
+      <p class="mt-4 text-lg text-[var(--muted)]">
+        Why most fail while structured systems make success inevitable.
+      </p>
+    </div>
+
+    <!-- Comparison Grid -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Left – muted / negative -->
+      <article class="flex flex-col gap-6">
+        <div class="group rounded-2xl p-6 bg-[var(--panel)]/30 shadow-inner transition hover:scale-[1.02] cursor-pointer">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-times-circle text-red-400 text-2xl"></i>
+            <h3 class="text-xl font-bold text-[var(--muted)]">Random Guesswork</h3>
+          </div>
+          <p class="mt-2 text-[var(--muted)]/90 text-sm md:text-base">
+            Following outdated tips slows growth and kills momentum.
+          </p>
+        </div>
+        <div class="group rounded-2xl p-6 bg-[var(--panel)]/30 shadow-inner transition hover:scale-[1.02] cursor-pointer">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-times-circle text-red-400 text-2xl"></i>
+            <h3 class="text-xl font-bold text-[var(--muted)]">Manual Chaos</h3>
+          </div>
+          <p class="mt-2 text-[var(--muted)]/90 text-sm md:text-base">
+            Scattered tools and inconsistent processes create confusion.
+          </p>
+        </div>
+        <div class="group rounded-2xl p-6 bg-[var(--panel)]/30 shadow-inner transition hover:scale-[1.02] cursor-pointer">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-times-circle text-red-400 text-2xl"></i>
+            <h3 class="text-xl font-bold text-[var(--muted)]">Clarity Loss</h3>
+          </div>
+          <p class="mt-2 text-[var(--muted)]/90 text-sm md:text-base">
+            Lack of structured steps kills confidence and speed.
+          </p>
+        </div>
+      </article>
+
+      <!-- Right – glowing / positive -->
+      <article class="flex flex-col gap-6">
+        <div class="group rounded-2xl p-6 bg-gradient-to-tr from-[var(--highlight)]/30 via-[var(--highlight)]/20 to-[var(--panel)] shadow-glow transition hover:scale-[1.03] cursor-pointer">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-check-circle text-[var(--highlight)] text-2xl"></i>
+            <h3 class="text-xl font-bold text-[var(--accent)]">Structured System</h3>
+          </div>
+          <p class="mt-2 text-[var(--accent)]/90 text-sm md:text-base">
+            Predictable signals and funnel control create seamless wins.
+          </p>
+        </div>
+        <div class="group rounded-2xl p-6 bg-gradient-to-tr from-[var(--highlight)]/30 via-[var(--highlight)]/20 to-[var(--panel)] shadow-glow transition hover:scale-[1.03] cursor-pointer">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-check-circle text-[var(--highlight)] text-2xl"></i>
+            <h3 class="text-xl font-bold text-[var(--accent)]">Automated Clarity</h3>
+          </div>
+          <p class="mt-2 text-[var(--accent)]/90 text-sm md:text-base">
+            Tools and workflows reduce friction and guide every step.
+          </p>
+        </div>
+        <div class="group rounded-2xl p-6 bg-gradient-to-tr from-[var(--highlight)]/30 via-[var(--highlight)]/20 to-[var(--panel)] shadow-glow transition hover:scale-[1.03] cursor-pointer">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-check-circle text-[var(--highlight)] text-2xl"></i>
+            <h3 class="text-xl font-bold text-[var(--accent)]">Confidence Map</h3>
+          </div>
+          <p class="mt-2 text-[var(--accent)]/90 text-sm md:text-base">
+            Each move is tracked, validated, and optimized for growth.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+      <a href="https://form.jotform.com/mubarakfounder/founders-ecom-mentorship" target="_blank"
+         class="inline-flex items-center justify-center px-8 py-4 rounded-full font-extrabold text-[#0b0b10] text-lg bg-gradient-to-r from-[var(--highlight)] to-[var(--accent)] shadow-xl hover:scale-105 transition">
+        Claim Your Edge Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== The Team – Trust Without Faces ===================== -->
+<section id="the-team" class="relative py-28 overflow-hidden bg-[var(--bg)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--accent)]">
+        Meet the Team
+      </h2>
+      <p class="mt-4 text-[var(--muted)] text-lg md:text-xl">
+        Roles that own outcomes, ensuring accountability at every step. No faces, just results.
+      </p>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+      <!-- Card 1 -->
+      <div class="relative flex flex-col items-center p-8 rounded-3xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow hover:scale-105 transition-transform duration-500 overflow-hidden group">
+        <!-- Floating Particles -->
+        <div class="absolute inset-0 pointer-events-none">
+          <div class="w-2 h-2 bg-[var(--highlight)] rounded-full animate-float absolute top-5 left-3"></div>
+          <div class="w-2 h-2 bg-[var(--accent)] rounded-full animate-float absolute bottom-8 right-6"></div>
+        </div>
+        <!-- Avatar -->
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--highlight)] to-[var(--accent)] text-[var(--bg)] font-bold text-lg mb-5 shadow-lg">
+          OP
+        </div>
+        <h3 class="text-xl font-bold text-[var(--accent)] mb-3 text-center">Operations Lead</h3>
+        <p class="text-[var(--muted)] text-center text-sm md:text-base">
+          Owns workflow efficiency & ensures all tasks hit deadlines.
+        </p>
+        <!-- Metrics Slide Up -->
+        <div class="mt-4 hidden group-hover:flex flex-col items-center gap-2 text-[var(--accent)] text-sm animate-slideup">
+          <span>✅ 98% Task Completion</span>
+          <span>✅ 24h Response SLA</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="relative flex flex-col items-center p-8 rounded-3xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow hover:scale-105 transition-transform duration-500 overflow-hidden group">
+        <div class="absolute inset-0 pointer-events-none">
+          <div class="w-2 h-2 bg-[var(--highlight)] rounded-full animate-float absolute top-10 right-5"></div>
+          <div class="w-2 h-2 bg-[var(--accent)] rounded-full animate-float absolute bottom-6 left-8"></div>
+        </div>
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--highlight)] to-[var(--accent)] text-[var(--bg)] font-bold text-lg mb-5 shadow-lg">
+          MK
+        </div>
+        <h3 class="text-xl font-bold text-[var(--accent)] mb-3 text-center">Marketing Lead</h3>
+        <p class="text-[var(--muted)] text-center text-sm md:text-base">
+          Owns ad strategy & ensures message hits identity and conversion.
+        </p>
+        <div class="mt-4 hidden group-hover:flex flex-col items-center gap-2 text-[var(--accent)] text-sm animate-slideup">
+          <span>✅ +35% Engagement Lift</span>
+          <span>✅ 27% CTR Avg</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="relative flex flex-col items-center p-8 rounded-3xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow hover:scale-105 transition-transform duration-500 overflow-hidden group">
+        <div class="absolute inset-0 pointer-events-none">
+          <div class="w-2 h-2 bg-[var(--highlight)] rounded-full animate-float absolute top-6 left-8"></div>
+          <div class="w-2 h-2 bg-[var(--accent)] rounded-full animate-float absolute bottom-10 right-10"></div>
+        </div>
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--highlight)] to-[var(--accent)] text-[var(--bg)] font-bold text-lg mb-5 shadow-lg">
+          DS
+        </div>
+        <h3 class="text-xl font-bold text-[var(--accent)] mb-3 text-center">Data Specialist</h3>
+        <p class="text-[var(--muted)] text-center text-sm md:text-base">
+          Owns reporting, tracking KPIs & optimizing conversions across channels.
+        </p>
+        <div class="mt-4 hidden group-hover:flex flex-col items-center gap-2 text-[var(--accent)] text-sm animate-slideup">
+          <span>✅ 99% Accuracy</span>
+          <span>✅ Real-time Dashboards</span>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="relative flex flex-col items-center p-8 rounded-3xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow hover:scale-105 transition-transform duration-500 overflow-hidden group">
+        <div class="absolute inset-0 pointer-events-none">
+          <div class="w-2 h-2 bg-[var(--highlight)] rounded-full animate-float absolute top-8 right-8"></div>
+          <div class="w-2 h-2 bg-[var(--accent)] rounded-full animate-float absolute bottom-6 left-6"></div>
+        </div>
+        <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--highlight)] to-[var(--accent)] text-[var(--bg)] font-bold text-lg mb-5 shadow-lg">
+          FX
+        </div>
+        <h3 class="text-xl font-bold text-[var(--accent)] mb-3 text-center">Founder / Strategy</h3>
+        <p class="text-[var(--muted)] text-center text-sm md:text-base">
+          Owns vision, strategy & ensures all teams are accountable to outcomes.
+        </p>
+        <div class="mt-4 hidden group-hover:flex flex-col items-center gap-2 text-[var(--accent)] text-sm animate-slideup">
+          <span>✅ 100% Alignment</span>
+          <span>✅ Weekly Wins Report</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+      <a href="https://form.jotform.com/mubarakfounder/founders-ecom-mentorship" target="_blank"
+         class="inline-flex items-center justify-center px-8 py-4 rounded-full font-extrabold text-[#0b0b10] text-lg bg-gradient-to-r from-[var(--highlight)] to-[var(--accent)] shadow-xl hover:scale-105 transition">
+        Join the Elite Team
+      </a>
+    </div>
+  </div>
+
+  <!-- Animations -->
+  <style>
+    .shadow-glow {
+      box-shadow: 0 0 25px rgba(127, 219, 255, 0.35), 0 10px 50px rgba(127, 219, 255, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+    .shadow-glow:hover {
+      box-shadow: 0 0 45px rgba(127, 219, 255, 0.55), 0 20px 70px rgba(127, 219, 255, 0.25);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes slideup {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-slideup {
+      animation: slideup 0.5s forwards;
+    }
+  </style>
+</section>
+
+<section id="video-testimonials" class="relative py-28 bg-[var(--bg)] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--accent)]">
+        What Our Students Say
+      </h2>
+      <p class="mt-4 text-[var(--muted)] text-lg md:text-xl">
+        Real results, real stories. Experience the shift.
+      </p>
+    </div>
+
+    <!-- Horizontal Scroll -->
+    <div class="relative overflow-x-auto scrollbar-hide flex gap-10 py-6">
+
+      <!-- Card -->
+      <div class="min-w-[300px] max-w-[300px] group rounded-[32px] bg-[var(--panel)] shadow-glow hover:scale-105 transition-all duration-300">
+        
+        <!-- Portrait Video Wrapper -->
+        <div class="relative w-full aspect-[4/5] overflow-hidden rounded-t-[32px]">
+          <video class="absolute inset-0 w-full h-full object-cover"
+                 src="test.MP4"
+                 playsinline preload="metadata" controlsList="nodownload noplaybackrate"></video>
+
+          <button class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-center justify-center opacity-100 transition group-hover:opacity-80" onclick="this.previousElementSibling.play(); this.remove();">
+            <i class="fa-solid fa-play text-[var(--accent)] text-5xl"></i>
+          </button>
+        </div>
+
+        <!-- Text -->
+        <div class="p-5">
+          <h3 class="font-bold text-[var(--accent)] text-sm mb-1">Olivia, 2 weeks in</h3>
+          <p class="text-xs text-[var(--muted)] leading-relaxed">
+            Finally hit consistent sales without guessing.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="min-w-[300px] max-w-[300px] group rounded-[32px] bg-[var(--panel)] shadow-glow hover:scale-105 transition-all duration-300">
+        <div class="relative w-full aspect-[4/5] overflow-hidden rounded-t-[32px]">
+          <video class="absolute inset-0 w-full h-full object-cover"
+                 src="testq.MP4"
+                 playsinline preload="metadata" controlsList="nodownload noplaybackrate"></video>
+          <button class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-center justify-center opacity-100 transition group-hover:opacity-80" onclick="this.previousElementSibling.play(); this.remove();">
+            <i class="fa-solid fa-play text-[var(--accent)] text-5xl"></i>
+          </button>
+        </div>
+        <div class="p-5">
+          <h3 class="font-bold text-[var(--accent)] text-sm mb-1">Jamal, 30 days</h3>
+          <p class="text-xs text-[var(--muted)] leading-relaxed">
+            Scaled to 1k per day with structure, not luck.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="min-w-[300px] max-w-[300px] group rounded-[32px] bg-[var(--panel)] shadow-glow hover:scale-105 transition-all duration-300">
+        <div class="relative w-full aspect-[4/5] overflow-hidden rounded-t-[32px]">
+          <video class="absolute inset-0 w-full h-full object-cover"
+                 src="video3.mp4"
+                 playsinline preload="metadata" controlsList="nodownload noplaybackrate"></video>
+          <button class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-center justify-center opacity-100 transition group-hover:opacity-80" onclick="this.previousElementSibling.play(); this.remove();">
+            <i class="fa-solid fa-play text-[var(--accent)] text-5xl"></i>
+          </button>
+        </div>
+        <div class="p-5">
+          <h3 class="font-bold text-[var(--accent)] text-sm mb-1">Sofia, 3 weeks</h3>
+          <p class="text-xs text-[var(--muted)] leading-relaxed">
+            DFY removed the chaos and gave me clarity.
+          </p>
+        </div>
+      </div>
+
+    <div class="min-w-[300px] max-w-[300px] group rounded-[32px] bg-[var(--panel)] shadow-glow hover:scale-105 transition-all duration-300">
+        <div class="relative w-full aspect-[4/5] overflow-hidden rounded-t-[32px]">
+          <video class="absolute inset-0 w-full h-full object-cover"
+                 src="video3.mp4"
+                 playsinline preload="metadata" controlsList="nodownload noplaybackrate"></video>
+          <button class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-center justify-center opacity-100 transition group-hover:opacity-80" onclick="this.previousElementSibling.play(); this.remove();">
+            <i class="fa-solid fa-play text-[var(--accent)] text-5xl"></i>
+          </button>
+        </div>
+        <div class="p-5">
+          <h3 class="font-bold text-[var(--accent)] text-sm mb-1">Sofia, 3 weeks</h3>
+          <p class="text-xs text-[var(--muted)] leading-relaxed">
+            DFY removed the chaos and gave me clarity.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+      <a href="https://form.jotform.com/mubarakfounder/founders-ecom-mentorship" target="_blank"
+         class="inline-flex items-center justify-center px-8 py-4 rounded-full font-extrabold text-[#0b0b10] text-lg bg-gradient-to-r from-[var(--highlight)] to-[var(--accent)] shadow-xl hover:scale-105 transition">
+        Claim your spot too
+      </a>
+    </div>
+  </div>
+
+  <!-- Click to play control -->
+  <script>
+    document.querySelectorAll('#video-testimonials video').forEach(video => {
+      video.controls = false
+      video.addEventListener('click', () => {
+        if (video.paused) {
+          video.play()
+        } else {
+          video.pause()
+        }
+      })
+    })
+  </script>
+
+  <style>
+    .shadow-glow {
+      box-shadow: 0 0 25px rgba(127,219,255,0.35), 0 10px 50px rgba(127,219,255,0.15);
+    }
+    .shadow-glow:hover {
+      box-shadow: 0 0 45px rgba(127,219,255,0.55), 0 20px 70px rgba(127,219,255,0.25);
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</section>
+
+<!-- ===================== Urgency – Logical Scarcity ===================== -->
+<section id="urgency" class="relative py-20 bg-[var(--bg)] text-center overflow-hidden">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--accent)] mb-4">
+      Limited Intake
+    </h2>
+    <p class="text-[var(--muted)] text-lg md:text-xl mb-12">
+      We accept only a few applicants per cycle to ensure quality guidance and results.
+    </p>
+
+    <!-- Capacity & Countdown -->
+    <div class="flex flex-col md:flex-row justify-center items-center gap-12">
+      <!-- Remaining Slots -->
+      <div class="p-8 rounded-2xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow animate-float transition hover:scale-105">
+        <h3 class="text-2xl font-bold text-[var(--accent)] mb-2">Slots Remaining</h3>
+        <p class="text-[var(--muted)] text-lg md:text-xl" id="slots-count">5</p>
+      </div>
+
+      <!-- Countdown -->
+      <div class="p-8 rounded-2xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow animate-float transition hover:scale-105">
+        <h3 class="text-2xl font-bold text-[var(--accent)] mb-2">Next Intake</h3>
+        <p class="text-[var(--muted)] text-lg md:text-xl">Opens Q1 2026</p>
+      </div>
+    </div>
+
+    <!-- Micro-Stats -->
+    <div class="mt-12 flex justify-center gap-8 flex-wrap text-[var(--muted)] text-sm md:text-base">
+      <div>Applications reviewed in 48 hrs</div>
+      <div>Average approval rate: 15%</div>
+      <div>Mentorship slots per cycle: 10</div>
+    </div>
+  </div>
+
+  <!-- Glow & Motion Styles -->
+  <style>
+    .shadow-glow {
+      box-shadow: 0 0 25px rgba(127, 219, 255, 0.35), 0 10px 50px rgba(127, 219, 255, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+    .shadow-glow:hover {
+      box-shadow: 0 0 45px rgba(127, 219, 255, 0.55), 0 20px 70px rgba(127, 219, 255, 0.25);
+    }
+    .animate-float {
+      animation: float 4s ease-in-out infinite alternate;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+  </style>
+</section>
+<!-- =================== /Urgency – Logical Scarcity =================== -->
+
+<script>
+  // Example: dynamic slots countdown (can integrate with backend)
+  let slots = 5; // change dynamically if needed
+  const slotsEl = document.getElementById('slots-count');
+  setInterval(() => {
+    if(slots > 0) {
+      slotsEl.textContent = slots;
+    }
+  }, 1000);
+</script>
+
+<!-- ===================== Results & Proof – Process-Based Authority ===================== -->
+<section id="results-proof" class="relative py-28 bg-[var(--bg)] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--accent)]">
+        Results & Proof
+      </h2>
+      <p class="mt-4 text-[var(--muted)] text-lg md:text-xl">
+        Real snapshots from our students’ journeys. Process-focused, no hype.
+      </p>
+    </div>
+
+    <!-- Filter (Pro Move: Type-Based) -->
+    <div class="flex justify-center gap-4 mb-12 text-sm md:text-base">
+      <button class="filter-btn px-4 py-2 rounded-full bg-[var(--panel)] text-[var(--muted)] hover:bg-[var(--highlight)] hover:text-[var(--bg)] transition" data-type="all">All</button>
+      <button class="filter-btn px-4 py-2 rounded-full bg-[var(--panel)] text-[var(--muted)] hover:bg-[var(--highlight)] hover:text-[var(--bg)] transition" data-type="workflow">Workflow</button>
+      <button class="filter-btn px-4 py-2 rounded-full bg-[var(--panel)] text-[var(--muted)] hover:bg-[var(--highlight)] hover:text-[var(--bg)] transition" data-type="execution">Execution</button>
+      <button class="filter-btn px-4 py-2 rounded-full bg-[var(--panel)] text-[var(--muted)] hover:bg-[var(--highlight)] hover:text-[var(--bg)] transition" data-type="outcome">Outcome</button>
+    </div>
+
+    <!-- Masonry/Stacked Layout -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Proof Card 1 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-glow cursor-pointer" data-type="workflow">
+        <img src="winning product.png" alt="Proof 1" class="w-full h-64 object-cover rounded-3xl">
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <div class="text-center text-white px-4">
+            <h3 class="font-bold text-[var(--accent)] mb-2">Process Snapshot</h3>
+            <p class="text-[var(--muted)] text-sm">Validated winning product in 72 hours using structured angle test.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proof Card 2 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-glow cursor-pointer" data-type="execution">
+        <img src="pop up form.png" alt="Proof 2" class="w-full h-64 object-cover rounded-3xl">
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <div class="text-center text-white px-4">
+            <h3 class="font-bold text-[var(--accent)] mb-2">Process Snapshot</h3>
+            <p class="text-[var(--muted)] text-sm">Optimized checkout path and funnel flow, reducing drop-off by 28%.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proof Card 3 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-glow cursor-pointer" data-type="outcome">
+        <img src="sales.png" alt="Proof 3" class="w-full h-64 object-cover rounded-3xl">
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <div class="text-center text-white px-4">
+            <h3 class="font-bold text-[var(--accent)] mb-2">Process Snapshot</h3>
+            <p class="text-[var(--muted)] text-sm">Generated first $1k day using structured launch process.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proof Card 4 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-glow cursor-pointer" data-type="workflow">
+        <img src="designs.png" alt="Proof 4" class="w-full h-64 object-cover rounded-3xl">
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <div class="text-center text-white px-4">
+            <h3 class="font-bold text-[var(--accent)] mb-2">Process Snapshot</h3>
+            <p class="text-[var(--muted)] text-sm">Detailed angle board documentation for every creative tested.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proof Card 5 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-glow cursor-pointer" data-type="execution">
+        <img src="designs2.png" alt="Proof 5" class="w-full h-64 object-cover rounded-3xl">
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <div class="text-center text-white px-4">
+            <h3 class="font-bold text-[var(--accent)] mb-2">Process Snapshot</h3>
+            <p class="text-[var(--muted)] text-sm">Step-by-step ad optimization reducing CPA by 19% vs baseline.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proof Card 6 -->
+      <div class="group relative rounded-3xl overflow-hidden shadow-glow cursor-pointer" data-type="outcome">
+        <img src="shopify themes.png" alt="Proof 6" class="w-full h-64 object-cover rounded-3xl">
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <div class="text-center text-white px-4">
+            <h3 class="font-bold text-[var(--accent)] mb-2">Process Snapshot</h3>
+            <p class="text-[var(--muted)] text-sm">Automated scaling triggered $30k monthly revenue without extra manual work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+      <a href="https://form.jotform.com/mubarakfounder/founders-ecom-mentorship" target="_blank"
+         class="inline-flex items-center justify-center px-8 py-4 rounded-full font-extrabold text-[#0b0b10] text-lg bg-gradient-to-r from-[var(--highlight)] to-[var(--accent)] shadow-xl hover:scale-105 transition">
+        See Full Case Studies
+      </a>
+    </div>
+  </div>
+
+  <!-- Filter Logic JS -->
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const proofCards = document.querySelectorAll('#results-proof [data-type]');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-type');
+        proofCards.forEach(card => {
+          if(type === 'all' || card.dataset.type === type){
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Shadow Glow Style -->
+  <style>
+    .shadow-glow {
+      box-shadow: 0 0 25px rgba(127, 219, 255, 0.35), 0 10px 50px rgba(127, 219, 255, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+    .shadow-glow:hover {
+      box-shadow: 0 0 45px rgba(127, 219, 255, 0.55), 0 20px 70px rgba(127, 219, 255, 0.25);
+    }
+  </style>
+</section>
+
+<!-- ===================== Pricing Frame – Psychological Qualification ===================== -->
+<section id="pricing-frame" class="relative py-28 bg-[var(--bg)] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--accent)]">
+        Choose Your Path
+      </h2>
+      <p class="mt-4 text-[var(--muted)] text-lg md:text-xl">
+        Each path is designed for a specific growth stage. Find the one that fits you.
+      </p>
+    </div>
+
+    <!-- Tier Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-stretch">
+      <!-- Tier 1 – Basic -->
+      <div class="group relative flex flex-col p-8 rounded-3xl bg-[var(--panel)]/20 shadow-glow transform transition-all duration-500 hover:scale-[1.02] desaturated">
+        <h3 class="text-xl font-bold text-[var(--muted)] mb-2 text-center">Basic</h3>
+        <p class="text-[var(--muted)] text-center text-2xl font-extrabold mb-4">$250</p>
+        <p class="text-[var(--muted)] text-center mb-6 text-sm md:text-base">
+          For beginners testing the waters. Basic access to mentorship guidance.
+        </p>
+        <ul class="text-[var(--muted)]/80 space-y-2 mb-6 text-sm md:text-base">
+          <li>• Introductory materials</li>
+          <li>• Guided product research templates</li>
+        </ul>
+        <div class="mt-auto text-center">
+          <span class="text-[var(--muted)] italic text-sm">For early explorers</span>
+        </div>
+      </div>
+
+      <!-- Tier 2 – Standard (Highlighted) -->
+      <div class="group relative flex flex-col p-8 rounded-3xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow transform transition-all duration-500 hover:scale-105 border-2 border-[var(--accent)]">
+        <h3 class="text-xl font-bold text-[var(--accent)] mb-2 text-center">Standard</h3>
+        <p class="text-[var(--accent)] text-center text-2xl font-extrabold mb-4">$500</p>
+        <p class="text-[var(--muted)] text-center mb-6 text-sm md:text-base">
+          Ideal for serious learners ready to implement full strategies with support.
+        </p>
+        <ul class="text-[var(--muted)]/80 space-y-2 mb-6 text-sm md:text-base">
+          <li>• Full mentorship guidance</li>
+          <li>• Funnel & store reviews</li>
+          <li>• Access to scaling insights</li>
+        </ul>
+        <div class="mt-auto text-center text-sm font-semibold text-[var(--accent)]">
+          Most applicants choose this path
+        </div>
+      </div>
+
+      <!-- Tier 3 – Premium -->
+      <div class="group relative flex flex-col p-8 rounded-3xl bg-[var(--panel)]/20 shadow-glow transform transition-all duration-500 hover:scale-[1.02] desaturated">
+        <h3 class="text-xl font-bold text-[var(--muted)] mb-2 text-center">Premium</h3>
+        <p class="text-[var(--muted)] text-center text-2xl font-extrabold mb-4">Custom Pricing</p>
+        <p class="text-[var(--muted)] text-center mb-6 text-sm md:text-base">
+          For entrepreneurs seeking full done-for-you setup, high-touch support, and scaling.
+        </p>
+        <ul class="text-[var(--muted)]/80 space-y-2 mb-6 text-sm md:text-base">
+          <li>• DFY store & funnel setup</li>
+          <li>• Ad creatives & campaign launch</li>
+          <li>• 1-on-1 mentorship & scaling plan</li>
+        </ul>
+        <div class="mt-auto text-center">
+          <span class="text-[var(--muted)] italic text-sm">Exclusive access</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 text-center">
+      <a href="https://form.jotform.com/mubarakfounder/founders-ecom-mentorship" target="_blank"
+         class="inline-flex items-center justify-center px-8 py-4 rounded-full font-extrabold text-[#0b0b10] text-lg bg-gradient-to-r from-[var(--highlight)] to-[var(--accent)] shadow-xl hover:scale-105 transition">
+        Apply for Your Tier
+      </a>
+    </div>
+  </div>
+
+  <!-- Glow & Desaturation Styles -->
+  <style>
+    .shadow-glow {
+      box-shadow: 0 0 25px rgba(127, 219, 255, 0.35), 0 10px 50px rgba(127, 219, 255, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+    .shadow-glow:hover {
+      box-shadow: 0 0 45px rgba(127, 219, 255, 0.55), 0 20px 70px rgba(127, 219, 255, 0.25);
+    }
+    .desaturated {
+      filter: grayscale(0.65) contrast(0.85);
+    }
+  </style>
+</section>
+
+<!-- ===================== Application Filter – Value Amplification ===================== -->
+<section id="application-filter" class="relative py-28 bg-[var(--bg)] overflow-hidden">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Header -->
+    <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--accent)] mb-4">
+      Apply for Mentorship
+    </h2>
+    <p class="text-[var(--muted)] text-lg md:text-xl mb-12">
+      Only a select few are accepted. Show your commitment and we’ll guide your growth.
+    </p>
+
+    <!-- Filter Logic Display -->
+    <div class="relative mb-12">
+      <div class="flex justify-center gap-6 flex-wrap">
+        <div class="p-6 rounded-2xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow transform transition-all duration-500 hover:scale-105 animate-float">
+          <h3 class="text-xl font-bold text-[var(--accent)] mb-2">Clarity</h3>
+          <p class="text-[var(--muted)] text-sm">Show you understand your business stage & goals.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow transform transition-all duration-500 hover:scale-105 animate-float">
+          <h3 class="text-xl font-bold text-[var(--accent)] mb-2">Consistency</h3>
+          <p class="text-[var(--muted)] text-sm">Prove you’re ready to execute and follow structured guidance.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-gradient-to-tr from-[var(--highlight)]/20 via-[var(--highlight)]/10 to-[var(--panel)] shadow-glow transform transition-all duration-500 hover:scale-105 animate-float">
+          <h3 class="text-xl font-bold text-[var(--accent)] mb-2">Commitment</h3>
+          <p class="text-[var(--muted)] text-sm">Demonstrate dedication to growth and scaling your business.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Average Review Time -->
+    <p class="text-[var(--muted)] text-sm italic mb-6">
+      Average review time: 48 hours
+    </p>
+
+    <!-- CTA -->
+    <a href="https://form.jotform.com/mubarakfounder/founders-ecom-mentorship" target="_blank"
+       class="inline-flex items-center justify-center px-10 py-4 rounded-full font-extrabold text-[#0b0b10] text-lg bg-gradient-to-r from-[var(--highlight)] to-[var(--accent)] shadow-xl hover:scale-105 transition glow-cta">
+      Submit Your Application
+    </a>
+  </div>
+
+  <!-- Glow & Motion Styles -->
+  <style>
+    .shadow-glow {
+      box-shadow: 0 0 25px rgba(127, 219, 255, 0.35), 0 10px 50px rgba(127, 219, 255, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+    .shadow-glow:hover {
+      box-shadow: 0 0 45px rgba(127, 219, 255, 0.55), 0 20px 70px rgba(127, 219, 255, 0.25);
+    }
+    .animate-float {
+      animation: float 4s ease-in-out infinite alternate;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+    .glow-cta {
+      transition: all 0.4s ease-in-out;
+    }
+    .glow-cta:hover {
+      box-shadow: 0 0 30px rgba(127, 219, 255, 0.65), 0 10px 60px rgba(127, 219, 255, 0.25);
+      transform: scale(1.05);
+    }
+  </style>
+</section>
+
+<!-- ===================== Modern FAQ with Icons ===================== -->
+<section id="faq" class="relative py-24 bg-[var(--bg)] text-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--accent)] mb-4">
+        FAQ / Objection Handling
+      </h2>
+      <p class="text-[var(--muted)] text-lg md:text-xl">
+        Still on the fence? Read this, watch quick proofs, decide fast.
+      </p>
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="space-y-4">
+      <!-- FAQ Item -->
+      <div class="faq-item bg-[var(--panel)] rounded-xl shadow-lg overflow-hidden">
+        <button class="faq-header flex items-center justify-between w-full p-4 text-left font-semibold text-[var(--accent)] hover:bg-[var(--highlight)]/20 transition focus:outline-none">
+          <div class="flex items-center gap-3">
+            <span class="faq-icon w-8 h-8 flex items-center justify-center bg-[var(--highlight)]/30 rounded-full text-[var(--accent)]">?</span>
+            I’ve tried mentorships before. What’s different here?
+          </div>
+          <span class="faq-chevron transition-transform duration-300">&#x25BC;</span>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden px-4 pb-4 text-[var(--muted)] text-sm md:text-base transition-all duration-500">
+          This mentorship is hands-on, step-by-step, and offers 1-on-1 WhatsApp support. We help you implement and scale, not just theory.
+        </div>
+      </div>
+
+      <div class="faq-item bg-[var(--panel)] rounded-xl shadow-lg overflow-hidden">
+        <button class="faq-header flex items-center justify-between w-full p-4 text-left font-semibold text-[var(--accent)] hover:bg-[var(--highlight)]/20 transition focus:outline-none">
+          <div class="flex items-center gap-3">
+            <span class="faq-icon w-8 h-8 flex items-center justify-center bg-[var(--highlight)]/30 rounded-full text-[var(--accent)]">💰</span>
+            What budget do I need for ads and tests?
+          </div>
+          <span class="faq-chevron transition-transform duration-300">&#x25BC;</span>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden px-4 pb-4 text-[var(--muted)] text-sm md:text-base transition-all duration-500">
+          Budget depends on your store and testing phase. Typically, $50–$200 per product for initial tests.
+        </div>
+      </div>
+
+      <div class="faq-item bg-[var(--panel)] rounded-xl shadow-lg overflow-hidden">
+        <button class="faq-header flex items-center justify-between w-full p-4 text-left font-semibold text-[var(--accent)] hover:bg-[var(--highlight)]/20 transition focus:outline-none">
+          <div class="flex items-center gap-3">
+            <span class="faq-icon w-8 h-8 flex items-center justify-center bg-[var(--highlight)]/30 rounded-full text-[var(--accent)]">🚚</span>
+            Do you help with suppliers and shipping issues?
+          </div>
+          <span class="faq-chevron transition-transform duration-300">&#x25BC;</span>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden px-4 pb-4 text-[var(--muted)] text-sm md:text-base transition-all duration-500">
+          Yes, we guide you on supplier selection, shipping solutions, and even private supplier options.
+        </div>
+      </div>
+
+      <div class="faq-item bg-[var(--panel)] rounded-xl shadow-lg overflow-hidden">
+        <button class="faq-header flex items-center justify-between w-full p-4 text-left font-semibold text-[var(--accent)] hover:bg-[var(--highlight)]/20 transition focus:outline-none">
+          <div class="flex items-center gap-3">
+            <span class="faq-icon w-8 h-8 flex items-center justify-center bg-[var(--highlight)]/30 rounded-full text-[var(--accent)]">⏱️</span>
+            How fast until I see traction?
+          </div>
+          <span class="faq-chevron transition-transform duration-300">&#x25BC;</span>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden px-4 pb-4 text-[var(--muted)] text-sm md:text-base transition-all duration-500">
+          Most students see meaningful results within 4–6 weeks if they follow the process consistently.
+        </div>
+      </div>
+
+      <div class="faq-item bg-[var(--panel)] rounded-xl shadow-lg overflow-hidden">
+        <button class="faq-header flex items-center justify-between w-full p-4 text-left font-semibold text-[var(--accent)] hover:bg-[var(--highlight)]/20 transition focus:outline-none">
+          <div class="flex items-center gap-3">
+            <span class="faq-icon w-8 h-8 flex items-center justify-center bg-[var(--highlight)]/30 rounded-full text-[var(--accent)]">🛡️</span>
+            What if I get stuck between calls?
+          </div>
+          <span class="faq-chevron transition-transform duration-300">&#x25BC;</span>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden px-4 pb-4 text-[var(--muted)] text-sm md:text-base transition-all duration-500">
+          You’ll have ongoing WhatsApp support, templates, and strategy feedback so you never feel lost.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const headers = document.querySelectorAll('.faq-header');
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const chevron = header.querySelector('.faq-chevron');
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        // Close all other FAQs
+        document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = '0px');
+        document.querySelectorAll('.faq-chevron').forEach(ch => ch.style.transform = 'rotate(0deg)');
+
+        if (!isOpen) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  </script>
+
+  <style>
+    @media (max-width: 700px) {
+      .faq-header {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+      }
+      .faq-content {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</section>
+
+<script>
+  const faqHeaders = document.querySelectorAll('.faq-header');
+
+  faqHeaders.forEach(header => {
+    const content = header.nextElementSibling;
+    // Open default for first FAQ
+    if(header.parentElement === faqHeaders[0].parentElement) {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+
+    header.addEventListener('click', () => {
+      // Collapse others
+      faqHeaders.forEach(h => {
+        if(h !== header) {
+          h.nextElementSibling.style.maxHeight = null;
+          h.querySelector('i').style.transform = 'rotate(0deg)';
+        }
+      });
+      // Toggle current
+      if(content.style.maxHeight){
+        content.style.maxHeight = null;
+        header.querySelector('i').style.transform = 'rotate(0deg)';
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        header.querySelector('i').style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+
+  // Optional: auto-scroll to most clicked FAQ
+  let lastClickedFAQ = sessionStorage.getItem('lastClickedFAQ');
+  if(lastClickedFAQ){
+    const faq = document.querySelector(lastClickedFAQ);
+    if(faq) faq.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  faqHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      sessionStorage.setItem('lastClickedFAQ', '#' + header.parentElement.id);
+    });
+  });
+</script>
+
+<!-- ===================== Footer – Credibility 2.0 ===================== -->
+<footer id="footer" class="relative py-16 bg-[var(--bg)] text-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Brand Statement -->
+    <div class="text-center mb-12">
+      <h3 class="text-2xl md:text-3xl font-extrabold text-[var(--accent)]">
+        Founder Ecom
+      </h3>
+      <p class="text-[var(--muted)] mt-2 max-w-2xl mx-auto text-sm md:text-base">
+        Elevating aspiring entrepreneurs to $1,000/day and beyond with structured mentorship, data-driven strategies, and hands-on guidance.
+      </p>
+    </div>
+
+    <!-- Links Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center md:text-left mb-12">
+      <!-- Column 1: Quick Links -->
+      <div>
+        <h4 class="font-semibold text-[var(--accent)] mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-[var(--muted)] text-sm">
+          <li><a href="#how-it-works" class="hover:text-[var(--highlight)] transition">How It Works</a></li>
+          <li><a href="#the-gap" class="hover:text-[var(--highlight)] transition">The Gap</a></li>
+          <li><a href="#pricing-frame" class="hover:text-[var(--highlight)] transition">Pricing</a></li>
+          <li><a href="#faq" class="hover:text-[var(--highlight)] transition">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Social Proof / Badges -->
+      <div class="flex flex-col items-center md:items-start">
+        <h4 class="font-semibold text-[var(--accent)] mb-4">Trust & Partnerships</h4>
+        <div class="flex gap-4">
+          <img src="/badges/partner1.svg" alt="Partner 1" class="h-10 transition transform hover:scale-110">
+          <img src="/badges/partner2.svg" alt="Partner 2" class="h-10 transition transform hover:scale-110">
+          <img src="/badges/partner3.svg" alt="Partner 3" class="h-10 transition transform hover:scale-110">
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center text-[var(--muted)] text-sm">
+      <p>© 2025 Founder Ecom. All rights reserved.</p>
+      <p class="mt-2 md:mt-0">Crafted with precision for entrepreneurs who scale smart.</p>
+    </div>
+  </div>
+
+  <style>
+    /* Subtle gradient overlay guiding attention */
+    #footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to bottom, rgba(127,219,255,0.1), transparent);
+      pointer-events: none;
+    }
+  </style>
+</footer>
+<script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if(toggleBtn && mobileMenu){
+      toggleBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  </script>
+</body>
+</html>
